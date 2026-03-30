@@ -20,25 +20,25 @@ export default function App() {
     }
   }, [isDark]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      document.documentElement.classList.add('scrolling');
-    };
-
-    window.addEventListener('scroll', handleScroll, { once: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className={`${isDark ? 'dark' : ''} bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300`}>
-      <Header isDark={isDark} setIsDark={setIsDark} />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Certifications />
-      <Contact />
-      <Footer />
+    <div className={`${isDark ? 'dark' : ''} relative min-h-screen bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-neutral-100 transition-colors duration-500 font-body`}>
+      {/* Noise texture overlay */}
+      <div className="fixed inset-0 pointer-events-none noise-overlay z-[1] opacity-30 dark:opacity-50" />
+      
+      {/* Ambient glow blobs */}
+      <div className="fixed top-0 left-1/4 w-[600px] h-[600px] bg-amber-500/5 dark:bg-amber-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-500/5 dark:bg-orange-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="relative z-[2]">
+        <Header isDark={isDark} setIsDark={setIsDark} />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Certifications />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }

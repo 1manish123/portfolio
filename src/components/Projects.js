@@ -22,7 +22,6 @@ export default function Projects() {
       github: 'https://github.com/1manish123/gettogether',
       live: 'https://get-together.tech/',
     },
-     
     {
       title: 'Class-Connect',
       description: 'An educational platform that provides study materials, tracks progress, and enables peer collaboration. Focused on improving the learning experience for students.',
@@ -31,143 +30,118 @@ export default function Projects() {
       features: ['Resource library', 'Progress tracking', 'Peer collaboration'],
       github: 'https://github.com/1manish123/Class-Connect',
     },
-   
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-neutral-950">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-4">
+          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-amber-600 dark:text-amber-400 mb-3">
+            Selected Work
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-neutral-900 dark:text-white mb-4">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-black dark:bg-white"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full" />
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="group flex flex-col bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden hover:border-neutral-400 dark:hover:border-neutral-700 transition-all duration-300 shadow-sm hover:shadow-lg"
-            >
-              {/* Project Image */}
-              <div className="relative h-40 bg-neutral-200 dark:bg-neutral-800 overflow-hidden flex items-center justify-center">
-                {project.image.startsWith('http') || project.image.startsWith('/') ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="text-6xl group-hover:scale-110 transition-transform duration-500">{project.image}</div>
-                )}
-              </div>
-
-              {/* Project Content */}
-              <div className="flex flex-col flex-1 p-6">
-                <h3 className="text-xl font-bold mb-2 text-black dark:text-white transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2 flex-1">
-                  {project.description}
-                </p>
-
-                {/* Key Features */}
-                <div className="mb-4">
-                  <h4 className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-2 uppercase tracking-wider">
-                    Features
-                  </h4>
-                  <ul className="space-y-1">
-                    {project.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-xs text-neutral-600 dark:text-neutral-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-black dark:bg-white mt-1 flex-shrink-0"></span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-md text-xs font-medium border border-neutral-300 dark:border-neutral-700"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+        {/* Horizontal Scroll Container */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.12, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  className="h-full flex flex-col rounded-2xl card-glass card-glass-hover transition-all duration-300 overflow-hidden"
+                >
+                  {/* Project Image */}
+                  <div className="relative h-36 overflow-hidden bg-neutral-100 dark:bg-neutral-800/50">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3 mt-auto pt-4 border-t border-neutral-200 dark:border-neutral-800">
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
-                  >
-                    <FiGithub size={16} />
-                    GitHub
-                  </motion.a>
+                  {/* Content */}
+                  <div className="flex flex-col flex-1 p-4">
+                    <h3 className="text-lg font-heading font-bold text-neutral-900 dark:text-white mb-1.5">
+                      {project.title}
+                    </h3>
 
-                  {project.live && (
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-black dark:border-white text-black dark:text-white rounded-lg font-medium text-sm hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-                    >
-                      <FiExternalLink size={16} />
-                      Live
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    {/* Features */}
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 mb-3">
+                      {project.features.map((feature) => (
+                        <span
+                          key={feature}
+                          className="flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-amber-500" />
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 rounded-full text-xs font-medium border border-amber-200/50 dark:border-amber-500/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons — always visible */}
+                    <div className="flex gap-3 mt-auto pt-4 border-t border-neutral-200/40 dark:border-white/5">
+                      <motion.a
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.96 }}
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-xl font-medium text-sm hover:opacity-90 transition-opacity"
+                      >
+                        <FiGithub size={16} />
+                        GitHub
+                      </motion.a>
+
+                      {project.live && (
+                        <motion.a
+                          whileHover={{ scale: 1.04 }}
+                          whileTap={{ scale: 0.96 }}
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-medium text-sm hover:shadow-lg hover:shadow-amber-500/20 transition-shadow"
+                        >
+                          <FiExternalLink size={16} />
+                          Live
+                        </motion.a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+        </div>
       </div>
     </section>
   );

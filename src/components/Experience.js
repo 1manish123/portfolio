@@ -11,8 +11,7 @@ export default function Experience() {
       period: '2023 - ongoing',
       description: 'Pursuing a degree with focus on data structures, algorithms, web development, and databases. Building practical skills alongside theoretical knowledge.',
       icon: HiAcademicCap,
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20',
+      gradient: 'from-blue-500 to-cyan-400',
     },
     {
       type: 'Focus',
@@ -21,10 +20,8 @@ export default function Experience() {
       period: 'Ongoing',
       description: 'Strong foundation in DSA using C++. Regular problem-solving to build better programming fundamentals and optimization skills.',
       icon: HiChartBar,
-      color: 'from-green-500 to-emerald-500',
-      bgColor: 'bg-green-50 dark:bg-green-900/20',
+      gradient: 'from-emerald-500 to-teal-400',
     },
-    
     {
       type: 'Development',
       title: 'Full-Stack Development',
@@ -32,8 +29,7 @@ export default function Experience() {
       period: 'Ongoing',
       description: 'Built multiple production-ready applications using React, Node.js, and various databases. Learned by doing, from frontend to backend architecture.',
       icon: HiSparkles,
-      color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-purple-50 dark:bg-purple-900/20',
+      gradient: 'from-purple-500 to-pink-400',
     },
     {
       type: 'Skills',
@@ -42,126 +38,99 @@ export default function Experience() {
       period: 'Ongoing',
       description: 'Effective communicator and team player with a strong problem-solving mindset. Proven ability to collaborate actively, adapt quickly, and lead initiatives.',
       icon: HiTrophy,
-      color: 'from-orange-500 to-amber-500',
-      bgColor: 'bg-orange-50 dark:bg-orange-900/20',
+      gradient: 'from-amber-500 to-orange-400',
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-neutral-950">
-      <div className="max-w-7xl mx-auto">
+    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-4">
+          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-amber-600 dark:text-amber-400 mb-3">
+            My Journey
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-neutral-900 dark:text-white mb-4">
             Experience & Growth
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
+          <p className="text-base text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
             My journey as a developer, student, and learner. Building skills through education, achievements, and hands-on development.
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-6"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mx-auto mt-6" />
         </motion.div>
 
-        {/* Experience Cards Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {experiences.map((exp) => {
-            const IconComponent = exp.icon;
-            return (
-              <motion.div
-                key={exp.title}
-                variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className={`group relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 ${exp.bgColor}`}
-              >
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+        {/* Vertical Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-400 via-amber-500/50 to-transparent" />
 
-                {/* Content */}
-                <div className="relative p-6 sm:p-8">
-                  {/* Top Section - Icon and Badge */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${exp.color} flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-shadow`}>
-                      <IconComponent className="text-2xl" />
-                    </div>
+          {/* Timeline items */}
+          <div className="space-y-12">
+            {experiences.map((exp, index) => {
+              const IconComponent = exp.icon;
+              const isLeft = index % 2 === 0;
 
+              return (
+                <motion.div
+                  key={exp.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className={`relative flex items-start gap-6 ${
+                    // On desktop, alternate left/right
+                    isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="px-3 py-1 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-full text-xs font-semibold text-neutral-700 dark:text-neutral-300"
+                      whileInView={{ scale: [0, 1.2, 1] }}
+                      transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                      viewport={{ once: true }}
+                      className={`w-12 h-12 rounded-full bg-gradient-to-br ${exp.gradient} flex items-center justify-center text-white shadow-lg`}
                     >
-                      {exp.period}
+                      <IconComponent className="text-xl" />
                     </motion.div>
                   </div>
 
-                  {/* Title Section */}
-                  <div className="mb-4">
-                    <div className="inline-block mb-2">
-                      <span className={`px-3 py-1 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent text-s font-bold uppercase tracking-wider`}>
+                  {/* Content card */}
+                  <div className={`ml-20 md:ml-0 md:w-[calc(50%-2rem)] ${
+                    isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'
+                  }`}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      className="p-6 rounded-2xl card-glass card-glass-hover transition-all duration-300"
+                    >
+                      {/* Type badge */}
+                      <span className={`inline-block px-3 py-1 bg-gradient-to-r ${exp.gradient} bg-clip-text text-transparent text-xs font-bold uppercase tracking-wider mb-3`}>
                         {exp.type}
                       </span>
-                    </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold text-black dark:text-white mb-1">
-                      {exp.title}
-                    </h3>
-                    
+                      <h3 className="text-xl font-heading font-bold text-neutral-900 dark:text-white mb-1">
+                        {exp.title}
+                      </h3>
+
+                      <p className="text-sm text-amber-600 dark:text-amber-400 font-medium mb-3">
+                        {exp.period}
+                      </p>
+
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        {exp.description}
+                      </p>
+                    </motion.div>
                   </div>
-
-                  {/* Description */}
-                  <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed text-s">
-                    {exp.description}
-                  </p>
-                </div>
-
-                {/* Bottom gradient line */}
-                <motion.div
-                  variants={{
-                    hidden: { scaleX: 0 },
-                    visible: { 
-                      scaleX: 1, 
-                      transition: { delay: 0.4, duration: 0.6 } 
-                    }
-                  }}
-                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.color} origin-left`}
-                />
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
