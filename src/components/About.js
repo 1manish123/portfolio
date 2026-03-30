@@ -123,7 +123,7 @@ export default function About() {
                   <source srcSet="/images/dp.png" type="image/png" />
                   <img
                     src="/images/dp.png"
-                    alt="Profile photo of Manish Kumar Singh"
+                    alt="Profile of Manish Kumar Singh"
                     className="w-full h-full object-cover transition-transform duration-500 scale-[1.15] hover:scale-[1.25] object-[center_60%]"
                     loading="lazy"
                     decoding="async"

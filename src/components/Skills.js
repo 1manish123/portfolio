@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SiReact, SiNodedotjs, SiCplusplus, SiTailwindcss, SiMongodb, SiExpress, SiJavascript, SiGit, SiFramer } from 'react-icons/si';
-import { FiRefreshCw, FiMonitor } from 'react-icons/fi';
+import { SiReact, SiNodedotjs, SiCplusplus, SiTailwindcss, SiMongodb, SiExpress, SiJavascript } from 'react-icons/si';
 
 export default function Skills() {
   const allSkills = [
